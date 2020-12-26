@@ -36,7 +36,7 @@ namespace MonoMenu
 
         public override void OnLevelWasLoaded(int level)
         {
-            CreateInterface(GameObject.Find("Chest").transform);
+            MenuObject = CreateInterface();
             if (MenuObject != null)
             {
                 AddMonoMenuButton();
@@ -72,20 +72,13 @@ namespace MonoMenu
 			}
 		}
 
-        private void CreateInterface(Transform parent)
+        private GameObject CreateInterface()
         {
-            if (MenuObject == null)
-            {
-                MenuObject = UIBundle.LoadAsset("Assets/MonoMenu.prefab").Cast<GameObject>();
-                MenuObject = GameObject.Instantiate(MenuObject);
+            GameObject Asset = UIBundle.LoadAsset("Assets/MonoMenu.prefab").Cast<GameObject>();
+            Asset = GameObject.Instantiate(MenuObject);
+            Asset.SetActive(false);
 
-                foreach (MenuInterface menuInterface in interfaces)
-                {
-                    //menuInterface.RenderMenu();
-                }
-
-                MenuObject.SetActive(false);
-            }
+            return Asset;
         }
     }
 }
