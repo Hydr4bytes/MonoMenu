@@ -25,22 +25,8 @@ namespace MonoMenu.Elements
 			this.onOpen = onOpen;
 		}
 
-		public override void OnTrigger()
-		{
-			this._Interface.CloseMenu();
-			//EasyMenu.setSelectedMenu(this.m_Interface);
-			this.m_Interface.OpenMenu();
-			Action action = this.onOpen;
-			if (action == null)
-			{
-				return;
-			}
-			action();
-		}
-
 		public override TextMeshPro Render(GameObject gameObject)
 		{
-			//return EasyMenu.createText(gameObject, 0, 0f, Color.black, base.GetColor(), 0.4f, EasyMenu.margin, base.GetText());
 			return null;
 		}
 	}

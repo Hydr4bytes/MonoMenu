@@ -9,7 +9,7 @@ using TMPro;
 
 namespace MonoMenu.Elements
 {
-	public abstract class Element
+	public abstract class Element : MonoBehaviour
 	{
 		public Element() { }
 		public Element(string text) { }

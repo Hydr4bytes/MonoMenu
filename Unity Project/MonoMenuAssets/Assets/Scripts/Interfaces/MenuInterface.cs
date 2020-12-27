@@ -6,17 +6,14 @@ using MonoMenu.Elements;
 
 namespace MonoMenu.Interfaces
 {
-	public class MenuInterface : MonoBehaviour
+	public class MenuInterface
 	{
-		private string subtitleText;
+		public GameObject menuObject { get; set; }
+		public GameObject subtitleObject { get; set; }
+		public MenuInterface parentInterface;
+		public string subtitleText { get; set; }
 
 		private List<CategoryElement> categoryElements = new List<CategoryElement>();
-
-		public MenuInterface parentInterface;
-
-		private GameObject menuObject;
-
-		private GameObject subtitleObject;
 
 		public string text { get; }
 		public Color color { get; }
@@ -28,36 +25,6 @@ namespace MonoMenu.Interfaces
 			this.color = color;
 			menuElements = new List<MenuElement>();
 			this.subtitleText = subtitleText;
-		}
-
-		public GameObject GetMenuObject()
-		{
-			return menuObject;
-		}
-
-		public void SetMenuObject(GameObject gameObject)
-		{
-			menuObject = gameObject;
-		}
-
-		public string GetSubtitleText()
-		{
-			return subtitleText;
-		}
-
-		public void SetSubtitleText(string text)
-		{
-			subtitleText = text;
-		}
-
-		public void SetSubtitleObject(GameObject gameObject)
-		{
-			subtitleObject = gameObject;
-		}
-
-		public GameObject GetSubtitleObject()
-		{
-			return this.subtitleObject;
 		}
 
 		public void RenderMenu()

@@ -37,27 +37,5 @@ namespace MonoMenu.Elements
 			this.value = value;
 			this.Render(base.textObject);
 		}
-
-		public override void OnLeft()
-		{
-			this.value = !this.value;
-			BoolElement.OnValueChanged onValueChanged = this.onValueChanged;
-			if (onValueChanged != null)
-			{
-				onValueChanged(this.value);
-			}
-			this.Render(base.textObject);
-		}
-
-		public override void OnRight()
-		{
-			this.value = !this.value;
-			BoolElement.OnValueChanged onValueChanged = this.onValueChanged;
-			if (onValueChanged != null)
-			{
-				onValueChanged(this.value);
-			}
-			this.Render(base.textObject);
-		}
 	}
 }

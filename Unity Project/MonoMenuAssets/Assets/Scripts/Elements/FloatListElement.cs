@@ -7,9 +7,10 @@ namespace MonoMenu.Elements
 {
 	public class FloatListElement : Element
 	{
+		public string units { get => _units; set => value = units; }
+		private string _units { get => units; set => value = _units; }
 		private float value;
 		private List<float> options;
-		private string units;
 		private int currentOption;
 		private FloatListElement.OnValueChanged onValueChanged;
 		private delegate void OnValueChanged(float value);
