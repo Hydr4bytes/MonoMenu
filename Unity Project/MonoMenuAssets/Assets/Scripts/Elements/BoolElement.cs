@@ -5,18 +5,17 @@ using TMPro;
 
 namespace MonoMenu.Elements
 {
-	public class BoolElement : MenuElement
+	public class BoolElement : Element<bool>
 	{
-		private bool value;
 		private BoolElement.OnValueChanged onValueChanged;
 		private delegate void OnValueChanged(bool value);
 
-		public BoolElement(string text, Color color, bool startValue, string subtitleText = "") : base(text, color, subtitleText)
+		public BoolElement(string text, Color color, bool startValue, string subtitleText = "")
 		{
 			this.value = startValue;
 		}
 
-		public BoolElement(string text, Color color, bool startValue, Action<bool> onValueChanged, string subtitleText = "") : base(text, color, subtitleText)
+		public BoolElement(string text, Color color, bool startValue, Action<bool> onValueChanged, string subtitleText = "")
 		{
 			this.value = startValue;
 			this.onValueChanged = new BoolElement.OnValueChanged(onValueChanged.Invoke);

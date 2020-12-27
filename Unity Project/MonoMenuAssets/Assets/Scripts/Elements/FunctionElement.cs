@@ -47,11 +47,5 @@ namespace MonoMenu.Elements
 			}
 			action();
 		}
-
-		public override TextMeshPro Render(GameObject gameObject)
-		{
-			//return EasyMenu.createText(gameObject, 0, 0f, Color.black, base.GetColor(), 0.4f, EasyMenu.margin, base.GetText());
-			return null;
-		}
 	}
 }

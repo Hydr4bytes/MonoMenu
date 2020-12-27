@@ -7,19 +7,18 @@ using MonoMenu.Interfaces;
 
 namespace MonoMenu.Elements
 {
-	public abstract class MenuElement : MonoBehaviour
+	public abstract class MenuElement : Element
 	{
-		public Color color { get; set; }
 		public string text { get; set; }
-		public GameObject textObject { get; set; }
-		public GameObject subtitleObject { get; set; }
+
+		public Color color { get; set; }
+
 		public string subtitleText
 		{
 			get => subtitleText;
 			set
 			{
-				if(this.subtitleText != null)
-					subtitleObject.GetComponent<UnityEngine.UI.Text>().text = this.subtitleText;
+				if(this.subtitleText != null) subtitleObject.GetComponent<UnityEngine.UI.Text>().text = this.subtitleText;
 			}
 		}
 
@@ -32,24 +31,13 @@ namespace MonoMenu.Elements
 			this.subtitleText = subtitleText;
 		}
 
-		public abstract TextMeshPro Render(GameObject gameObject);
-
-		public virtual void OnTrigger() { }
-
-		public virtual void OnRight() { }
-
-		public virtual void OnLeft() { }
-
 		public void OnSelect()
 		{
 			foreach (MenuElement menuElement in _Interface.menuElements)
-			{
 				menuElement.subtitleObject.SetActive(false);
-			}
+
 			if (this.subtitleObject != null)
-			{
 				this.subtitleObject.SetActive(true);
-			}
 		}
 	}
 }

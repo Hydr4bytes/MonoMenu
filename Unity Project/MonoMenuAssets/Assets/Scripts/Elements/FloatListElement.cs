@@ -5,7 +5,7 @@ using TMPro;
 
 namespace MonoMenu.Elements
 {
-	public class FloatListElement : MenuElement
+	public class FloatListElement : Element
 	{
 		private float value;
 		private List<float> options;
@@ -17,28 +17,17 @@ namespace MonoMenu.Elements
 		public FloatListElement(string text, Color color, List<float> options, float startValue, string units = "", string subtitleText = "") : base(text, color, subtitleText)
 		{
 			this.options = options;
-			if (options.Contains(startValue))
-			{
-				this.value = startValue;
-			}
-			else
-			{
-				this.value = options[0];
-			}
+
+			if (options.Contains(startValue)) this.value = startValue; else this.value = options[0];
+
 			this.units = units;
 		}
 
 		public FloatListElement(string text, Color color, List<float> options, float startValue, Action<float> onValueChanged, string units = "", string subtitleText = "") : base(text, color, subtitleText)
 		{
 			this.options = options;
-			if (options.Contains(startValue))
-			{
-				this.value = startValue;
-			}
-			else
-			{
-				this.value = options[0];
-			}
+			if (options.Contains(startValue)) this.value = startValue; else this.value = options[0];
+
 			this.onValueChanged = new FloatListElement.OnValueChanged(onValueChanged.Invoke);
 			this.units = units;
 		}

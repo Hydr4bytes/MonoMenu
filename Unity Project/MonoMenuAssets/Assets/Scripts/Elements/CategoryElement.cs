@@ -9,7 +9,7 @@ namespace MonoMenu.Elements
 {
 	public class CategoryElement : MenuElement
 	{
-		private MenuInterface m_Interface;
+		public MenuInterface m_Interface { get; }
 		private Action onOpen;
 
 		public CategoryElement(string text, Color color, MenuInterface category, MenuInterface parentInterface, string subtitleText = "") : base(text, color, subtitleText)
@@ -23,11 +23,6 @@ namespace MonoMenu.Elements
 			this.m_Interface = category;
 			this.m_Interface.parentInterface = parentInterface;
 			this.onOpen = onOpen;
-		}
-
-		public MenuInterface GetInterface()
-		{
-			return this.m_Interface;
 		}
 
 		public override void OnTrigger()

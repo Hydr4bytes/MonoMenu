@@ -86,7 +86,7 @@ namespace MonoMenu.Interfaces
 			}
 			foreach (CategoryElement categoryElement in this.categoryElements)
 			{
-				categoryElement.GetInterface().CloseMenu();
+				categoryElement.m_Interface.CloseMenu();
 			}
 		}
 
@@ -106,7 +106,8 @@ namespace MonoMenu.Interfaces
 			}
 		}
 
-		public IntElement CreateIntElement(string text, Color color, int minValue, int maxValue, int increment, int startValue, string units = "", string subtitleText = "")
+		#region Constructors (OLD)
+		/*public IntElement CreateIntElement(string text, Color color, int minValue, int maxValue, int increment, int startValue, string units = "", string subtitleText = "")
 		{
 			IntElement intElement = new IntElement(text, color, minValue, maxValue, increment, startValue, units, subtitleText);
 			this.SetElementInterface(intElement);
@@ -234,7 +235,9 @@ namespace MonoMenu.Interfaces
 			this.SetElementInterface(categoryElement);
 			this.menuElements.Add(categoryElement);
 			return categoryElement;
-		}
+		}*/
+
+		#endregion
 
 		private void SetElementInterface(MenuElement element)
 		{
