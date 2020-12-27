@@ -58,7 +58,7 @@ namespace MonoMenu.Elements
 			if (this.options.Contains(value))
 			{
 				this.value = value;
-				this.Render(base.GetTextObject());
+				this.Render(base.textObject);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace MonoMenu.Elements
 		{
 			this.options = options;
 			this.value = options[0];
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public List<float> GetOptions()
@@ -92,7 +92,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override void OnRight()
@@ -108,7 +108,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override TextMeshPro Render(GameObject gameObject)

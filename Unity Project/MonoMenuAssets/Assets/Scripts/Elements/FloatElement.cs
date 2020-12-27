@@ -57,7 +57,7 @@ namespace MonoMenu.Elements
 		public void SetValue(float value)
 		{
 			this.value = value;
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public float GetValue()
@@ -95,7 +95,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override void OnRight()
@@ -113,7 +113,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace MonoMenu.Elements
 		public void SetValue(bool value)
 		{
 			this.value = value;
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override void OnLeft()
@@ -47,7 +47,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override void OnRight()
@@ -58,7 +58,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 	}
 }

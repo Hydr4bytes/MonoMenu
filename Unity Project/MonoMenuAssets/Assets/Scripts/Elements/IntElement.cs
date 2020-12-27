@@ -37,7 +37,7 @@ namespace MonoMenu.Elements
 		public void SetValue(int value)
 		{
 			this.value = value;
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public int GetValue()
@@ -85,7 +85,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		// Token: 0x06000056 RID: 86 RVA: 0x00003DB8 File Offset: 0x00001FB8
@@ -103,7 +103,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 	}
 }

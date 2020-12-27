@@ -58,7 +58,7 @@ namespace MonoMenu.Elements
 			if (this.options.Contains(value))
 			{
 				this.value = value;
-				this.Render(base.GetTextObject());
+				this.Render(base.textObject);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace MonoMenu.Elements
 		{
 			this.options = options;
 			this.value = options[0];
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public List<int> GetOptions()
@@ -92,7 +92,7 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override void OnRight()
@@ -108,21 +108,11 @@ namespace MonoMenu.Elements
 			{
 				onValueChanged(this.value);
 			}
-			this.Render(base.GetTextObject());
+			this.Render(base.textObject);
 		}
 
 		public override TextMeshPro Render(GameObject gameObject)
 		{
-			/*
-			return EasyMenu.createText(gameObject, 0, 0f, Color.black, base.GetColor(), 0.4f, EasyMenu.margin, string.Concat(new string[]
-			{
-				base.GetText(),
-				": ",
-				this.value.ToString(),
-				" ",
-				this.units
-			}));
-			*/
 			return null;
 		}
 	}

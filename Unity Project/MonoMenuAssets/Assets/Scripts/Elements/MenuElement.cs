@@ -7,13 +7,22 @@ using MonoMenu.Interfaces;
 
 namespace MonoMenu.Elements
 {
-	public abstract class MenuElement
+	public abstract class MenuElement : MonoBehaviour
 	{
-		private string text;
-		private string subtitleText;
-		private Color color;
-		private GameObject textObject;
-		private GameObject subtitleObject;
+		public Color color { get; set; }
+		public string text { get; set; }
+		public GameObject textObject { get; set; }
+		public GameObject subtitleObject { get; set; }
+		public string subtitleText
+		{
+			get => subtitleText;
+			set
+			{
+				if(this.subtitleText != null)
+					subtitleObject.GetComponent<UnityEngine.UI.Text>().text = this.subtitleText;
+			}
+		}
+
 		public MenuInterface _Interface;
 
 		public MenuElement(string text, Color color, string subtitleText = "")
@@ -21,60 +30,6 @@ namespace MonoMenu.Elements
 			this.text = text;
 			this.color = color;
 			this.subtitleText = subtitleText;
-		}
-
-		public void SetTextObject(GameObject gameObject)
-		{
-			this.textObject = gameObject;
-		}
-
-		public GameObject GetTextObject()
-		{
-			return this.textObject;
-		}
-
-		public void SetSubtitleObject(GameObject gameObject)
-		{
-			this.subtitleObject = gameObject;
-		}
-
-		public GameObject GetSubtitleObject()
-		{
-			return this.subtitleObject;
-		}
-
-		public void SetText(string text)
-		{
-			this.text = text;
-		}
-
-		public string GetText()
-		{
-			return this.text;
-		}
-
-		public void SetSubtitleText(string text)
-		{
-			this.subtitleText = text;
-			if (this.subtitleObject != null)
-			{
-				subtitleObject.GetComponent<TextMeshPro>().SetText(this.subtitleText);
-			}
-		}
-
-		public string GetSubtitleText()
-		{
-			return this.subtitleText;
-		}
-
-		public void SetColor(Color color)
-		{
-			this.color = color;
-		}
-
-		public Color GetColor()
-		{
-			return this.color;
 		}
 
 		public abstract TextMeshPro Render(GameObject gameObject);

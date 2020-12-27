@@ -9,7 +9,8 @@ using StressLevelZero.Interaction;
 using StressLevelZero.Rig;
 using StressLevelZero.UI;
 using StressLevelZero.UI.Radial;
-using MonoMenu.ElementStuff;
+using MonoMenu.Elements;
+using MonoMenu.Interfaces;
 
 namespace MonoMenu
 {

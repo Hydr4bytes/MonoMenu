@@ -6,12 +6,16 @@ using MonoMenu.Elements;
 
 namespace MonoMenu.Interfaces
 {
-	public class MenuInterface
+	public class MenuInterface : MonoBehaviour
 	{
 		private string subtitleText;
+
 		private List<CategoryElement> categoryElements = new List<CategoryElement>();
+
 		public MenuInterface parentInterface;
+
 		private GameObject menuObject;
+
 		private GameObject subtitleObject;
 
 		public string text { get; }
@@ -58,7 +62,7 @@ namespace MonoMenu.Interfaces
 
 		public void RenderMenu()
 		{
-			if (this.menuObject)
+			if (menuObject)
 			{
 				GameObject MenuTitle = new GameObject("MenuTitle");
 				foreach (MenuElement menuElement in this.menuElements)
@@ -78,7 +82,7 @@ namespace MonoMenu.Interfaces
 			this.hideMenu();
 			foreach (MenuElement menuElement in this.menuElements)
 			{
-				menuElement.GetSubtitleObject().SetActive(false);
+				menuElement.subtitleObject.SetActive(false);
 			}
 			foreach (CategoryElement categoryElement in this.categoryElements)
 			{
@@ -242,7 +246,7 @@ namespace MonoMenu.Interfaces
 			if (this.menuElements.Contains(element))
 			{
 				this.menuElements.Remove(element);
-				GameObject.Destroy(element.GetTextObject());
+				GameObject.Destroy(element.textObject);
 				return;
 			}
 		}
