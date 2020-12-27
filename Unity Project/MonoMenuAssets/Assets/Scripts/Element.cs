@@ -33,7 +33,7 @@ namespace MonoMenu.Elements
 			this.subtitleText = subtitleText;
 		}
 
-		public string elementName = "-";
+		public string elementName = "Example";
 		public Color color = Color.white;
 		public string subtitleText = "";
 

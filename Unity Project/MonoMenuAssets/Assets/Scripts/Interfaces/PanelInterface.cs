@@ -8,7 +8,6 @@ public class PanelInterface : MonoBehaviour
 	public List<Element> elementList = new List<Element>();
 
 	private Transform currentGroup { get; set; }
-	[SerializeField] private List<GameObject> groupObjects = new List<GameObject>();
 	[SerializeField] private List<Transform> groups = new List<Transform>();
 
 	private void Awake()
@@ -22,6 +21,15 @@ public class PanelInterface : MonoBehaviour
 		if (currentGroup == null) return;
 		// TODO
 		// get all objects
+		foreach(Transform t in currentGroup.GetComponentsInChildren<Transform>())
+		{
+			if (!t.name.Contains("Group"))
+			{
+				Element element = t.gameObject.AddComponent<Element>();
+				t.GetComponent<UnityEngine.UI.Text>().text = element.elementName;
+				t.GetComponent<UnityEngine.UI.Text>().color = element.color;
+			}
+		}
 		// add elements to specified objects
 		// set text options to reflect visuals
 	}
