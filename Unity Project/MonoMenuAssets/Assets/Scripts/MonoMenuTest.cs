@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MonoMenu.Elements;
-using MonoMenu.Interfaces;
 
 public class MonoMenuTest : MonoBehaviour
 {
-	public static List<MenuInterface> interfaces = new List<MenuInterface>();
 	public GameObject bundle;
-
-	private static MenuInterface selectedMenu;
 
 	private void Awake()
 	{
