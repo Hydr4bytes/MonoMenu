@@ -8,12 +8,12 @@ public class VerticalLayoutScript : LayoutGroup
     public float Distance;
     public float PaddingLeft;
     public float PaddingTop;
+    public float LerpSpeed;
 
     public override void SetLayoutHorizontal() { }
     public override void SetLayoutVertical() { }
-
-    public override void CalculateLayoutInputVertical() => CalculateLayout();
-    public override void CalculateLayoutInputHorizontal() => CalculateLayout();
+    public override void CalculateLayoutInputVertical() { } // => CalculateLayout();
+    public override void CalculateLayoutInputHorizontal() { } // => CalculateLayout();
 
     void CalculateLayout()
     {
@@ -29,9 +29,15 @@ public class VerticalLayoutScript : LayoutGroup
             if (child != null)
             {
                 m_Tracker.Add(this, child, DrivenTransformProperties.Anchors | DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot);
-                child.localPosition = new Vector3(StartX + PaddingLeft, (Distance * -i) - PaddingTop, child.position.z);
+                Vector3 P = new Vector3(StartX + PaddingLeft, (Distance * -i) - PaddingTop, child.position.z);
+                child.localPosition = Vector3.Lerp(child.localPosition, P, Time.deltaTime * LerpSpeed);
                 child.anchorMin = child.anchorMax = child.pivot = new Vector2(0.5f, 0.5f);
             }
         }
+    }
+
+    private void Update()
+    {
+        CalculateLayout();
     }
 }
