@@ -64,9 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoneworksPointer.cs" />
-    <Compile Include="Assets\Scripts\Element.cs" />
     <Compile Include="Assets\Scripts\Interfaces\PanelInterface.cs" />
     <Compile Include="Assets\Scripts\MonoMenuTest.cs" />
+    <Compile Include="Assets\Scripts\OurScripts\Element.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
