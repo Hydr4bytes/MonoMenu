@@ -8,6 +8,11 @@ using TMPro;
 
 namespace MonoMenu.Elements
 {
+	/// <summary>
+	/// Element instance. This will be drawn and shown by the MenuInterface.
+	/// It contains the name, color, and object.
+	/// </summary>
+	[System.Serializable]
 	public class Element : MonoBehaviour
 	{
 		public Element() 
@@ -33,7 +38,7 @@ namespace MonoMenu.Elements
 			this.subtitleText = subtitleText;
 		}
 
-		public string elementName = "Example";
+		public string elementName = "-";
 		public Color color = Color.white;
 		public string subtitleText = "";
 
@@ -41,12 +46,21 @@ namespace MonoMenu.Elements
 		public GameObject subtitleObject { get; set; }
 	}
 
+	/// <summary>
+	/// Create a new Element instance in which you can set a type.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	[System.Serializable]
 	public class ElementGeneric<T> : Element
 	{
 		// stuff that depends on the type
-		public virtual T value { get; set; }
+
+		public T value
+		{
+			get
+			{
+				return value;
+			}
+		}
 	}
-
-	public class OpenElementGeneric<T> : ElementGeneric<T> { }
 }
-

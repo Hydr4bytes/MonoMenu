@@ -20,7 +20,7 @@ public class PanelInterface : MonoBehaviour
 	{
 		if (currentGroup == null) return;
 		// TODO
-		// get all objects
+		// get all objects in the group
 		foreach(Transform t in currentGroup.GetComponentsInChildren<Transform>())
 		{
 			if (!t.name.Contains("Group"))
