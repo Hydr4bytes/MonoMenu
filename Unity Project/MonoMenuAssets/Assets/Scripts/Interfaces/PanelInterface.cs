@@ -1,36 +1,79 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.UI;
+
 using MonoMenu.Elements;
+
 
 public class PanelInterface : MonoBehaviour
 {
 	public List<Element> elementList = new List<Element>();
+	public Dictionary<int, Transform> pages = new Dictionary<int, Transform>();
+	public GameObject footer = null;
 
 	private Transform currentGroup { get; set; }
-	[SerializeField] private List<Transform> groups = new List<Transform>();
+	[SerializeField] private List<GameObject> pageList = new List<GameObject>();
+	private int pageIndex;
+	private Text pageNumberText;
 
-	private void Awake()
+	private void Start() => Initialize();
+
+	public virtual void Initialize()
 	{
-		currentGroup = transform.Find("Group");
-		GetAllElements(currentGroup);
+		for(int i = 0; i < transform.childCount && transform.parent != null; i++)
+		{
+			pageList.Add(transform.GetChild(i).gameObject);
+			pageList[i].name += i;
+
+			currentGroup = pageList[pageIndex].transform;
+		}
+
+		pageNumberText = footer.transform.Find("PageNumber").GetComponent<Text>();
 	}
 
-	public void GetAllElements(Transform currentGroup)
+	public virtual void GetAllElements(Transform currentGroup)
 	{
 		if (currentGroup == null) return;
-		// TODO
-		// get all objects in the group
-		foreach(Transform t in currentGroup.GetComponentsInChildren<Transform>())
+
+		for (int i = 0; i < currentGroup.childCount; i++)
 		{
-			if (!t.name.Contains("Group"))
-			{
-				Element element = t.gameObject.AddComponent<Element>();
-				t.GetComponent<UnityEngine.UI.Text>().text = element.elementName;
-				t.GetComponent<UnityEngine.UI.Text>().color = element.color;
-			}
+			Transform currentChild = currentGroup.GetChild(i);
+			elementList.Add(currentChild.gameObject.AddComponent<Element>());
 		}
-		// add elements to specified objects
-		// set text options to reflect visuals
+	}
+
+	public void NextPage()
+	{
+		pageIndex++;
+
+		if (pageIndex > pageList.Count - 1)
+			pageIndex = pageList.Count - 1;
+	}
+
+	public void PreviousPage()
+	{
+		pageIndex--;
+		if (pageIndex < 0)
+			pageIndex = 0;
+	}
+
+	private void Update()
+	{
+		pageNumberText.text = $"PAGE {pageIndex + 1}/{pageList.Count}";
+
+		if (Input.GetKeyDown(KeyCode.A))
+			PreviousPage();
+		else if (Input.GetKeyDown(KeyCode.D))
+			NextPage();
+
+		for(int i = 0; i < pageList.Count; i++)
+		{
+			if (pageList[pageIndex] == pageList[i])
+				pageList[i].SetActive(true);
+			else
+				pageList[i].SetActive(false);
+		}
 	}
 }
