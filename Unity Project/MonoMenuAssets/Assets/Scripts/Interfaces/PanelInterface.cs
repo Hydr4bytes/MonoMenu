@@ -47,7 +47,6 @@ public class PanelInterface : MonoBehaviour
 	public void NextPage()
 	{
 		pageIndex++;
-
 		if (pageIndex > pageList.Count - 1)
 			pageIndex = pageList.Count - 1;
 	}
@@ -73,7 +72,19 @@ public class PanelInterface : MonoBehaviour
 			if (pageList[pageIndex] == pageList[i])
 				pageList[i].SetActive(true);
 			else
+            {
+				ResetElementsPosition(pageList[i].transform);
 				pageList[i].SetActive(false);
+			}
+		}
+	}
+
+	private void ResetElementsPosition(Transform Page)
+	{
+		for (int i = 0; i < Page.childCount; i++)
+		{
+			Transform currentChild = Page.GetChild(i);
+			currentChild.localPosition = Vector3.zero;
 		}
 	}
 }

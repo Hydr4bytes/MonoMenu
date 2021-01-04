@@ -10,7 +10,6 @@ public class VerticalLayoutScript : LayoutGroup
     public float Distance;
     public float PaddingLeft;
     public float PaddingTop;
-    //public float LerpSpeed;
 
     public override void SetLayoutHorizontal() { }
     public override void SetLayoutVertical() { }
@@ -32,8 +31,8 @@ public class VerticalLayoutScript : LayoutGroup
             {
                 m_Tracker.Add(this, child, DrivenTransformProperties.Anchors | DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot);
                 Vector3 P = new Vector3(StartX + PaddingLeft, (Distance * -i) - PaddingTop, child.position.z);
-                //child.localPosition = Vector3.Lerp(child.localPosition, P, Time.deltaTime * LerpSpeed);
-                child.localPosition += (P - child.localPosition) * curve.Evaluate(Time.time);
+                //child.localPosition = Vector3.Lerp(child.localPosition, P, Time.deltaTime * 5);
+                child.localPosition += (P - child.localPosition) * curve.Evaluate(Time.deltaTime * 60);
                 child.anchorMin = child.anchorMax = child.pivot = new Vector2(0.5f, 0.5f);
             }
         }
