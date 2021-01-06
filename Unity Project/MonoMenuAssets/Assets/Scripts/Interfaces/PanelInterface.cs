@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 using MonoMenu.Elements;
 
-
 public class PanelInterface : MonoBehaviour
 {
 	public List<Element> elementList = new List<Element>();
@@ -70,7 +69,25 @@ public class PanelInterface : MonoBehaviour
 		for(int i = 0; i < pageList.Count; i++)
 		{
 			if (pageList[pageIndex] == pageList[i])
+            {
+				if (pageList[i] == null)
+                {
+					pageList.Remove(pageList[i]);
+					PreviousPage();
+				}
+
+				//I don't like doing it this way
+				for(int j = 0; j < pageList[i].transform.childCount; j++)
+                {
+					GameObject child = pageList[i].transform.GetChild(j).gameObject;
+					Element e = child.GetComponent<Element>();
+					Text t = child.GetComponentInChildren<Text>();
+					t.text = e.elementName;
+					t.color = e.color;
+                }
+
 				pageList[i].SetActive(true);
+			}
 			else
             {
 				ResetElementsPosition(pageList[i].transform);
