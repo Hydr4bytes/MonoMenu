@@ -26,7 +26,9 @@ public class VerticalLayoutScript : LayoutGroup
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            RectTransform child = (RectTransform)transform.GetChild(i);
+            if(transform.GetChild(i).GetComponent<RectTransform>() == null) return;
+            RectTransform child = transform.GetChild(i).GetComponent<RectTransform>();
+
             if (child != null)
             {
                 m_Tracker.Add(this, child, DrivenTransformProperties.Anchors | DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.Pivot);
