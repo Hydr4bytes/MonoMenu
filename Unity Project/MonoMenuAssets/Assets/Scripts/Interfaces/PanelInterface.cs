@@ -75,13 +75,7 @@ public class PanelInterface : MonoBehaviour
 				for(int j = 0; j < pageList[i].transform.childCount; j++)
                 {
 					GameObject child = pageList[i].transform.GetChild(j).gameObject;
-					Element e = child.GetComponent<Element>();
-					Text t = child.GetComponentInChildren<Text>();
 
-					if (child == null || e == null || t == null) return;
-
-					t.text = e.elementName;
-					t.color = e.color;
                 }
 
 				pageList[i].SetActive(true);

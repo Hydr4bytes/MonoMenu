@@ -26,37 +26,83 @@ namespace MonoMenu.Elements
 		public Element(string elementName)
 		{
 			this.elementName = elementName;
+
+			UpdateText(textObjectTxt, null, elementName, color, 50);
 		}
 
 		public Element(string elementName, GameObject textObject)
 		{
 			this.elementName = elementName;
 			this.textObject = textObject;
+
+			this.textObjectTxt.text = elementName;
+
+			UpdateText(textObjectTxt, null, elementName, color, 50);
 		}
 
 		public Element(string elementName, string subtitleText)
 		{
 			this.elementName = elementName;
 			this.subtitleText = subtitleText;
+
+			this.textObjectTxt.text = elementName;
+			this.subtitleObjectTxt.text = subtitleText;
+
+			UpdateText(textObjectTxt, null, elementName, color, 50);
+			UpdateText(textObjectTxt, null, subtitleText, color, 50);
 		}
 
 		public Element(string elementName, GameObject textObject, string subtitleText, GameObject subtitleObject)
 		{
 			this.elementName = elementName;
 			this.textObject = textObject;
+
 			this.subtitleText = subtitleText;
 			this.subtitleObject = subtitleObject;
+
+			UpdateText(textObjectTxt, null, elementName, color, 50);
+			UpdateText(textObjectTxt, null, subtitleText, color, 50);
 		}
 
 		~Element() { }
 		#endregion
 
-		public string elementName = "-";
+		public string elementName = "Default";
 		public string subtitleText = "";
 		public Color color = Color.white;
 
 		public GameObject textObject { get; set; }
 		public GameObject subtitleObject { get; set; }
+
+		protected Text textObjectTxt
+		{
+			get
+			{
+				if (textObject.GetComponent<Text>() != null)
+					return _textObjectTxt = textObject.GetComponent<Text>();
+				else return textObjectTxt = textObject.AddComponent<Text>();
+			}
+			set
+			{
+				_textObjectTxt = value;
+			}
+		}
+		protected Text subtitleObjectTxt
+		{
+			get
+			{
+				if (subtitleObject.GetComponent<Text>() != null)
+					return _subtitleObjectTxt = subtitleObject.GetComponent<Text>();
+				else return _subtitleObjectTxt = subtitleObject.AddComponent<Text>();
+			}
+			set
+			{
+				_subtitleObjectTxt = value;
+			}
+		}
+
+		private Text _textObjectTxt;
+		private Text _subtitleObjectTxt;
 
 		public bool isButton;
 
@@ -83,6 +129,27 @@ namespace MonoMenu.Elements
 			});
 
 			return elementButton;
+		}
+
+		private void UpdateText(Text text, Font font, string title, Color color, TextAnchor alignment = TextAnchor.MiddleCenter)
+		{
+			if (text == null) return;
+
+			text.text = title;
+			text.font = font;
+			text.color = color;
+			text.alignment = alignment;
+		}
+
+		private void UpdateText(Text text, Font font, string title, Color color, int fontSize, TextAnchor alignment = TextAnchor.MiddleCenter)
+		{
+			if (text == null) return;
+
+			text.text = title;
+			text.font = font;
+			text.color = color;
+			text.fontSize = fontSize;
+			text.alignment = alignment;
 		}
 	}
 
