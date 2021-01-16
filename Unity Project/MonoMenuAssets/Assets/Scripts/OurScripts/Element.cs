@@ -18,68 +18,39 @@ namespace MonoMenu.Elements
 	public class Element : MonoBehaviour
 	{
 		#region Constructors/Destructors
-		public Element()
-		{
 
-		}
+		public Element() { }
 
-		public Element(string elementName)
-		{
-			this.elementName = elementName;
-
-			UpdateText(textObjectTxt, null, elementName, color, 50);
-		}
-
-		public Element(string elementName, GameObject textObject)
+		public Element(string elementName, GameObject textObject, Transform targetPage)
 		{
 			this.elementName = elementName;
 			this.textObject = textObject;
 
-			this.textObjectTxt.text = elementName;
-
-			UpdateText(textObjectTxt, null, elementName, color, 50);
-		}
-
-		public Element(string elementName, string subtitleText)
-		{
-			this.elementName = elementName;
-			this.subtitleText = subtitleText;
+			this.textObject.transform.localScale = Vector3.one / 1000f;
+			this.textObject.transform.SetParent(targetPage);
 
 			this.textObjectTxt.text = elementName;
-			this.subtitleObjectTxt.text = subtitleText;
 
-			UpdateText(textObjectTxt, null, elementName, color, 50);
-			UpdateText(textObjectTxt, null, subtitleText, color, 50);
-		}
-
-		public Element(string elementName, GameObject textObject, string subtitleText, GameObject subtitleObject)
-		{
-			this.elementName = elementName;
-			this.textObject = textObject;
-
-			this.subtitleText = subtitleText;
-			this.subtitleObject = subtitleObject;
-
-			UpdateText(textObjectTxt, null, elementName, color, 50);
-			UpdateText(textObjectTxt, null, subtitleText, color, 50);
+			UpdateText(textObjectTxt, Font.CreateDynamicFontFromOSFont("Arial", 1), elementName, color, 75);
 		}
 
 		~Element() { }
 		#endregion
 
 		public string elementName = "Default";
-		public string subtitleText = "";
 		public Color color = Color.white;
 
 		public GameObject textObject { get; set; }
-		public GameObject subtitleObject { get; set; }
 
 		protected Text textObjectTxt
 		{
 			get
 			{
 				if (textObject.GetComponent<Text>() != null)
+				{
+					if (textObject.GetComponent<RectTransform>()) textObjectRectTransform = textObject.GetComponent<RectTransform>();
 					return _textObjectTxt = textObject.GetComponent<Text>();
+				}
 				else return textObjectTxt = textObject.AddComponent<Text>();
 			}
 			set
@@ -87,22 +58,10 @@ namespace MonoMenu.Elements
 				_textObjectTxt = value;
 			}
 		}
-		protected Text subtitleObjectTxt
-		{
-			get
-			{
-				if (subtitleObject.GetComponent<Text>() != null)
-					return _subtitleObjectTxt = subtitleObject.GetComponent<Text>();
-				else return _subtitleObjectTxt = subtitleObject.AddComponent<Text>();
-			}
-			set
-			{
-				_subtitleObjectTxt = value;
-			}
-		}
 
 		private Text _textObjectTxt;
-		private Text _subtitleObjectTxt;
+
+		private RectTransform textObjectRectTransform = null;
 
 		public bool isButton;
 
@@ -111,7 +70,7 @@ namespace MonoMenu.Elements
 		public Button CreateButton(GameObject obj)
 		{
 			if (elementButton == null) 
-				elementButton = obj.AddComponent<Button>();
+				 elementButton = obj.AddComponent<Button>();
 			else elementButton = obj.GetComponent<Button>();
 
 			return elementButton;
@@ -120,7 +79,7 @@ namespace MonoMenu.Elements
 		public Button CreateButton(GameObject obj, UnityAction action)
 		{
 			if (elementButton == null)
-				elementButton = obj.AddComponent<Button>();
+				 elementButton = obj.AddComponent<Button>();
 			else elementButton = obj.GetComponent<Button>();
 
 			elementButton.onClick.AddListener(() =>
@@ -131,7 +90,7 @@ namespace MonoMenu.Elements
 			return elementButton;
 		}
 
-		private void UpdateText(Text text, Font font, string title, Color color, TextAnchor alignment = TextAnchor.MiddleCenter)
+		private void UpdateText(Text text, Font font, string title, Color color, TextAnchor alignment = TextAnchor.MiddleLeft)
 		{
 			if (text == null) return;
 
@@ -139,9 +98,11 @@ namespace MonoMenu.Elements
 			text.font = font;
 			text.color = color;
 			text.alignment = alignment;
+
+			textObjectRectTransform.sizeDelta = new Vector2(1000f, textObjectRectTransform.sizeDelta.y);
 		}
 
-		private void UpdateText(Text text, Font font, string title, Color color, int fontSize, TextAnchor alignment = TextAnchor.MiddleCenter)
+		private void UpdateText(Text text, Font font, string title, Color color, int fontSize, TextAnchor alignment = TextAnchor.MiddleLeft)
 		{
 			if (text == null) return;
 
@@ -150,6 +111,8 @@ namespace MonoMenu.Elements
 			text.color = color;
 			text.fontSize = fontSize;
 			text.alignment = alignment;
+
+			textObjectRectTransform.sizeDelta = new Vector2(1000f, textObjectRectTransform.sizeDelta.y);
 		}
 	}
 
